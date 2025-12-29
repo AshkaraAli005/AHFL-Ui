@@ -410,30 +410,37 @@ const ApplicantTransactions = () => {
                 </div>
 
                 <ScrollArea className="h-[500px]">
-                  <div className="flex items-center justify-center p-8">
-                    <div className="flex flex-col items-center gap-4 text-center">
-                      <div className="rounded-lg bg-muted p-8">
-                        <FileText className="h-16 w-16 text-muted-foreground" />
-                      </div>
-                      <div>
-                        <p className="font-medium">
-                          Document Preview
-                        </p>
+                  <div className="p-4">
+                    {relatedDocument ? (
+                      relatedDocument.name.toLowerCase().endsWith('.pdf') ? (
+                        <iframe
+                          src={relatedDocument.url || '/placeholder.svg'}
+                          className="w-full h-[460px] rounded-lg border-0"
+                          title={relatedDocument.name}
+                        />
+                      ) : (
+                        <div className="flex flex-col gap-4">
+                          <img
+                            src={relatedDocument.url || '/placeholder.svg'}
+                            alt={relatedDocument.name}
+                            className="w-full h-auto rounded-lg object-contain bg-muted"
+                          />
+                          <Button variant="outline" className="gap-2 w-full">
+                            <Download className="h-4 w-4" />
+                            Download Document
+                          </Button>
+                        </div>
+                      )
+                    ) : (
+                      <div className="flex flex-col items-center gap-4 text-center py-8">
+                        <div className="rounded-lg bg-muted p-8">
+                          <FileText className="h-16 w-16 text-muted-foreground" />
+                        </div>
                         <p className="text-sm text-muted-foreground">
-                          {relatedDocument?.name ||
-                            "Select an account to view related document"}
+                          Select an account to view related document
                         </p>
                       </div>
-                      {relatedDocument && (
-                        <Button
-                          variant="outline"
-                          className="gap-2"
-                        >
-                          <Download className="h-4 w-4" />
-                          Download PDF
-                        </Button>
-                      )}
-                    </div>
+                    )}
                   </div>
                 </ScrollArea>
               </div>

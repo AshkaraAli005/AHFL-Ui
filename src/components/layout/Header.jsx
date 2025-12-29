@@ -36,7 +36,7 @@ const Header = ({ title, subtitle }) => {
           />
         </div>
 
-        {/* Notifications */}
+        {/* Notifications
         <Button
           variant="ghost"
           size="icon"
@@ -44,7 +44,7 @@ const Header = ({ title, subtitle }) => {
         >
           <Bell className="h-5 w-5 text-muted-foreground" />
           <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-accent" />
-        </Button>
+        </Button> */}
 
         {/* User Menu */}
         <DropdownMenu>
