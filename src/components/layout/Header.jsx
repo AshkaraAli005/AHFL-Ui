@@ -55,7 +55,7 @@ const Header = ({ title, subtitle }) => {
             >
               <Avatar className="h-9 w-9">
                 <AvatarFallback className="bg-primary text-primary-foreground">
-                  JD
+                  SG
                 </AvatarFallback>
               </Avatar>
             </Button>
@@ -68,10 +68,10 @@ const Header = ({ title, subtitle }) => {
             <DropdownMenuLabel>
               <div className="flex flex-col space-y-1">
                 <p className="text-sm font-medium">
-                  John Doe
+                  Sebabrata Gosh
                 </p>
                 <p className="text-xs text-muted-foreground">
-                  john@financeflow.com
+                 sebabrata.r@securekloud.com
                 </p>
               </div>
             </DropdownMenuLabel>
