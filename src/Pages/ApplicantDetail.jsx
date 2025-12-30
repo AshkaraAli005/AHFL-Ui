@@ -9,6 +9,7 @@ import {
   DollarSign,
   Briefcase,
   MoreHorizontal,
+  Receipt,
 } from "lucide-react";
 
 import Header from "../components/layout/Header";
@@ -100,38 +101,43 @@ const ApplicantDetail = () => {
             Back to Applicants
           </Button>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="gap-2">
-                <MoreHorizontal className="h-4 w-4" />
-                Actions
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-48">
-              <DropdownMenuItem
-                onClick={() => handleStatusChange("approved")}
-              >
-                Mark as Approved
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => handleStatusChange("processing")}
-              >
-                Mark as Processing
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => handleStatusChange("pending")}
-              >
-                Mark as Pending
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                className="text-destructive"
-                onClick={() => handleStatusChange("rejected")}
-              >
-                Mark as Rejected
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div className="flex items-center gap-2">
+            <Button 
+              variant="outline" 
+              className="gap-2"
+              onClick={() => navigate(`/applicants/${id}/transactions`)}
+            >
+              <Receipt className="h-4 w-4" />
+              View Transactions
+            </Button>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="gap-2">
+                  <MoreHorizontal className="h-4 w-4" />
+                  Actions
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48">
+                <DropdownMenuItem onClick={() => handleStatusChange('approved')}>
+                  Mark as Approved
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleStatusChange('processing')}>
+                  Mark as Processing
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleStatusChange('pending')}>
+                  Mark as Pending
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem 
+                  className="text-destructive"
+                  onClick={() => handleStatusChange('rejected')}
+                >
+                  Mark as Rejected
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </motion.div>
 
         <div className="grid gap-6 lg:grid-cols-3">
