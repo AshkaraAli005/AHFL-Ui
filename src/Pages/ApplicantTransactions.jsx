@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useOutletContext } from "react-router-dom";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import {
@@ -43,12 +43,15 @@ import {
   getTransactionsByAccountId,
 } from "../data/transactionData";
 import { cn } from "../lib/utils";
+import sampleDoc from "../assets/252.pdf"
 
 const ITEMS_PER_PAGE = 10;
 
 const ApplicantTransactions = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+    const { collapseSidebar } = useOutletContext();
+
 
   const applicant = mockApplicants.find((a) => a.id === id);
 
@@ -181,9 +184,12 @@ const ApplicantTransactions = () => {
 
             <Button
               variant="outline"
-              onClick={() =>
-                setShowDocumentPreview(!showDocumentPreview)
-              }
+              onClick={() => {
+                setShowDocumentPreview(!showDocumentPreview);
+                if (!showDocumentPreview) {
+                  collapseSidebar();
+                }
+              }}
               className="gap-2"
             >
               <FileText className="h-4 w-4" />
@@ -370,7 +376,7 @@ const ApplicantTransactions = () => {
               className="w-[40%]"
             >
               <div className="sticky top-20 rounded-xl border bg-card">
-                <div className="flex items-center justify-between border-b p-4">
+                <div className="flex items-center justify-between border-b p-4 py-2">
                   <div className="flex items-center gap-2">
                     <FileText className="h-5 w-5 text-primary" />
                     <div>
@@ -378,13 +384,13 @@ const ApplicantTransactions = () => {
                         {relatedDocument?.name ||
                           "No Document"}
                       </p>
-                      <p className="text-xs text-muted-foreground">
+                      {/* <p className="text-xs text-muted-foreground">
                         {relatedDocument?.fileSize} •{" "}
                         {relatedDocument?.type.replace(
                           "_",
                           " "
                         )}
-                      </p>
+                      </p> */}
                     </div>
                   </div>
 
@@ -410,18 +416,18 @@ const ApplicantTransactions = () => {
                 </div>
 
                 <ScrollArea className="h-[500px]">
-                  <div className="p-4">
+                  <div className="">
                     {relatedDocument ? (
                       relatedDocument.name.toLowerCase().endsWith('.pdf') ? (
                         <iframe
-                          src={relatedDocument.url || '/placeholder.svg'}
-                          className="w-full h-[460px] rounded-lg border-0"
+                          src={relatedDocument.url || ''}
+                          className="w-full h-[500px] rounded-lg border-0"
                           title={relatedDocument.name}
                         />
                       ) : (
                         <div className="flex flex-col gap-4">
                           <img
-                            src={relatedDocument.url || '/placeholder.svg'}
+                            src={relatedDocument.url || sampleDoc}
                             alt={relatedDocument.name}
                             className="w-full h-auto rounded-lg object-contain bg-muted"
                           />

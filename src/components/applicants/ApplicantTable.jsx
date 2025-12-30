@@ -50,13 +50,13 @@ const ApplicantTable = ({ applicants, isLoading }) => {
       <Table>
         <TableHeader>
           <TableRow className="hover:bg-transparent">
-            <TableHead className="w-[250px]">Applicant</TableHead>
-            <TableHead>Loan Type</TableHead>
-            <TableHead>Amount</TableHead>
+            <TableHead className="min-w-[250px]">Applicant</TableHead>
+            {/* <TableHead>Loan Type</TableHead>
+            <TableHead>Amount</TableHead> */}
             <TableHead>Documents</TableHead>
             <TableHead>Status</TableHead>
             <TableHead>Applied</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead className="text-left">Actions</TableHead>
           </TableRow>
         </TableHeader>
 
@@ -93,14 +93,14 @@ const ApplicantTable = ({ applicants, isLoading }) => {
                   </div>
                 </div>
               </TableCell>
-
+{/* 
               <TableCell className="text-muted-foreground">
                 {applicant.loanType}
               </TableCell>
 
               <TableCell className="font-medium">
                 {formatCurrency(applicant.loanAmount)}
-              </TableCell>
+              </TableCell> */}
 
               <TableCell>
                 <div className="flex items-center gap-1.5 text-muted-foreground">
@@ -120,7 +120,7 @@ const ApplicantTable = ({ applicants, isLoading }) => {
                 )}
               </TableCell>
 
-              <TableCell className="text-right">
+              <TableCell className="text-left">
                 <DropdownMenu>
                   <DropdownMenuTrigger
                     asChild

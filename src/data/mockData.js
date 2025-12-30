@@ -1,4 +1,4 @@
-
+import  sampleDoc from "../assets/252.pdf";
 export const mockApplicants = [
   {
     id: '1',
@@ -13,27 +13,30 @@ export const mockApplicants = [
     documents: [
       {
         id: 'd1',
-        name: 'Bank Statement - Dec 2024',
+        name: 'Bank Statement - Dec 2024.pdf',
         type: 'bank_statement',
         status: 'verified',
+                url:sampleDoc,
         uploadedAt: '2024-12-20T10:35:00Z',
         fileSize: '2.4 MB',
         applicantId: '1',
       },
       {
         id: 'd2',
-        name: 'Bank Statement - Nov 2024',
+        name: 'Bank Statement - Nov 2024.pdf',
         type: 'bank_statement',
         status: 'verified',
+                url:sampleDoc,
         uploadedAt: '2024-12-20T10:36:00Z',
         fileSize: '2.1 MB',
         applicantId: '1',
       },
       {
         id: 'd3',
-        name: 'Income Tax Return 2023',
+        name: 'Income Tax Return 2023.pdf',
         type: 'tax_document',
         status: 'verified',
+        url:sampleDoc,
         uploadedAt: '2024-12-21T09:00:00Z',
         fileSize: '1.8 MB',
         applicantId: '1',
@@ -53,18 +56,20 @@ export const mockApplicants = [
     documents: [
       {
         id: 'd4',
-        name: 'Bank Statement - Dec 2024',
+        name: 'Bank Statement - Dec 2024.pdf',
         type: 'bank_statement',
         status: 'processing',
+        url:sampleDoc,
         uploadedAt: '2024-12-22T14:05:00Z',
         fileSize: '3.2 MB',
         applicantId: '2',
       },
       {
         id: 'd5',
-        name: 'Employment Verification',
+        name: 'Employment Verification.pdf',
         type: 'employment',
         status: 'verified',
+        url:sampleDoc,
         uploadedAt: '2024-12-22T14:10:00Z',
         fileSize: '0.8 MB',
         applicantId: '2',
@@ -84,9 +89,10 @@ export const mockApplicants = [
     documents: [
       {
         id: 'd6',
-        name: 'Bank Statement - Dec 2024',
+        name: 'Bank Statement - Dec 2024.pdf',
         type: 'bank_statement',
         status: 'pending',
+        url:sampleDoc,
         uploadedAt: '2024-12-25T09:20:00Z',
         fileSize: '1.9 MB',
         applicantId: '3',
@@ -106,20 +112,22 @@ export const mockApplicants = [
     documents: [
       {
         id: 'd7',
-        name: 'Bank Statement - Nov 2024',
+        name: 'Bank Statement - Nov 2024.pdf',
         type: 'bank_statement',
         status: 'rejected',
+        url:sampleDoc,
         uploadedAt: '2024-12-18T11:05:00Z',
         fileSize: '4.1 MB',
         applicantId: '4',
       },
       {
         id: 'd8',
-        name: 'Business Financial Report',
+        name: 'Business Financial Report.pdf',
         type: 'financial_report',
         status: 'rejected',
         uploadedAt: '2024-12-18T11:10:00Z',
         fileSize: '5.6 MB',
+        url:sampleDoc,
         applicantId: '4',
       },
     ],
@@ -137,18 +145,20 @@ export const mockApplicants = [
     documents: [
       {
         id: 'd9',
-        name: 'Bank Statement - Dec 2024',
+        name: 'Bank Statement - Dec 2024.pdf',
         type: 'bank_statement',
         status: 'verified',
         uploadedAt: '2024-12-15T08:35:00Z',
+        url:sampleDoc,
         fileSize: '2.0 MB',
         applicantId: '5',
       },
       {
         id: 'd10',
-        name: 'Driver License',
+        name: 'Driver License.pdf',
         type: 'identity',
         status: 'verified',
+        url:sampleDoc,
         uploadedAt: '2024-12-15T08:40:00Z',
         fileSize: '0.5 MB',
         applicantId: '5',
@@ -168,18 +178,20 @@ export const mockApplicants = [
     documents: [
       {
         id: 'd11',
-        name: 'Bank Statement - Dec 2024',
+        name: 'Bank Statement - Dec 2024.pdf',
         type: 'bank_statement',
         status: 'processing',
         uploadedAt: '2024-12-26T16:10:00Z',
         fileSize: '3.8 MB',
+        url:sampleDoc,
         applicantId: '6',
       },
       {
         id: 'd12',
-        name: 'Bank Statement - Nov 2024',
+        name: 'Bank Statement - Nov 2024.pdf',
         type: 'bank_statement',
         status: 'verified',
+        url:sampleDoc,
         uploadedAt: '2024-12-26T16:15:00Z',
         fileSize: '3.5 MB',
         applicantId: '6',

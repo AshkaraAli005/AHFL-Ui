@@ -4,7 +4,7 @@ export const mockBankAccounts = [
   {
     id: "acc1",
     accountNumber: "****4521",
-    bankName: "Chase Bank",
+    bankName: "Indian Bank",
     accountType: "business",
     balance: 45230.5,
     documentId: "d1",
@@ -13,7 +13,7 @@ export const mockBankAccounts = [
   {
     id: "acc2",
     accountNumber: "****7892",
-    bankName: "Bank of America",
+    bankName: "State Bank of India",
     accountType: "savings",
     balance: 28150.75,
     documentId: "d2",
@@ -24,7 +24,7 @@ export const mockBankAccounts = [
   {
     id: "acc3",
     accountNumber: "****3345",
-    bankName: "Wells Fargo",
+    bankName: "SBI",
     accountType: "current",
     balance: 67890.0,
     documentId: "d4",
@@ -66,7 +66,7 @@ export const mockBankAccounts = [
   {
     id: "acc7",
     accountNumber: "****6789",
-    bankName: "TD Bank",
+    bankName: "Union Bank",
     accountType: "savings",
     balance: 34200.0,
     documentId: "d9",
