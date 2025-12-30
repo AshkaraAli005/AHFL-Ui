@@ -89,7 +89,7 @@ const Dashboard = () => {
             transition={{ duration: 0.4, delay: 0.4 }}
           >
             <Card className="h-full">
-              <CardHeader>
+              <CardHeader className="pb-0">
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <TrendingUp className="h-5 w-5 text-accent" />
                   Status Distribution
@@ -108,7 +108,7 @@ const Dashboard = () => {
             transition={{ duration: 0.4, delay: 0.5 }}
             className="lg:col-span-2"
           >
-            <Card className="h-[50vh] overflow-y-auto">
+            <Card className="h-[54vh] overflow-y-auto">
               <CardHeader>
                 <CardTitle className="text-lg">
                   Recent Activity

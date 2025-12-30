@@ -266,7 +266,7 @@ const ApplicantTransactions = () => {
             transition={{ delay: 0.2 }}
             className={cn(
               "flex-1",
-              showDocumentPreview ? "lg:w-2/3" : ""
+              showDocumentPreview ? "lg:w-3/5" : ""
             )}
           >
             <div className="rounded-xl border bg-card">
@@ -367,7 +367,7 @@ const ApplicantTransactions = () => {
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="lg:w-1/3"
+              className="w-[40%]"
             >
               <div className="sticky top-20 rounded-xl border bg-card">
                 <div className="flex items-center justify-between border-b p-4">
