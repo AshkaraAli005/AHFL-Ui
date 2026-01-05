@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   mockApplicants,
+  mockDailyStats,
   mockDashboardStats,
   mockRecentActivity,
 } from "../data/mockData";
@@ -59,6 +60,13 @@ export const apiService = {
     return {
       success: true,
       data: mockRecentActivity,
+    };
+  },
+    async getDailyStats() {
+    await simulateDelay(400);
+    return {
+      success: true,
+      data: mockDailyStats,
     };
   },
 
