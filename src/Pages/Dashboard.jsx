@@ -50,7 +50,7 @@ const Dashboard = () => {
         <div>
           <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
             <Download className="h-5 w-5 text-primary" />
-            AHFL AWS Reception
+            AHFL Reception
           </h2>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -137,7 +137,7 @@ const Dashboard = () => {
             transition={{ duration: 0.4, delay: 0.7 }}
           >
             <Card className="h-full">
-              <CardHeader>
+              <CardHeader className="pb-0">
                 <CardTitle className="text-lg">
                   Processing Status Distribution
                 </CardTitle>

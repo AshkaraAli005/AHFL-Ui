@@ -55,7 +55,7 @@ const ApplicantTable = ({ applicants, isLoading }) => {
             <TableHead>Amount</TableHead> */}
             <TableHead>Documents</TableHead>
             <TableHead>Status</TableHead>
-            <TableHead>Applied</TableHead>
+            <TableHead>Processed On</TableHead>
             <TableHead className="text-left">Actions</TableHead>
           </TableRow>
         </TableHeader>

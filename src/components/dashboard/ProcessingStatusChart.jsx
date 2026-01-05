@@ -55,7 +55,7 @@ const ProcessingStatusChart = ({ stats }) => {
         </PieChart>
       </ResponsiveContainer>
 
-      <p className="text-center text-sm text-muted-foreground mt-2">
+      <p className="text-center text-sm text-muted-foreground">
         Total: {total.toLocaleString()} applicants picked up
       </p>
     </div>

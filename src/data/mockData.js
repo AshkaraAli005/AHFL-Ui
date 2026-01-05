@@ -1,8 +1,11 @@
+import  sampleDoc from "../assets/252.pdf";
+
+
 export const mockApplicants = [
   {
     id: '1',
-    name: 'Sarah Johnson',
-    email: 'sarah.johnson@email.com',
+    name: 'Ashkar Ali',
+    email: 'ashkarali.a@email.com',
     phone: '+1 (555) 123-4567',
     status: 'approved',
     processingStatus: 'qc_done',
@@ -15,26 +18,29 @@ export const mockApplicants = [
     documents: [
       {
         id: 'd1',
-        name: 'Bank Statement - Dec 2024',
+        name: 'Bank Statement - Dec 2024.pdf',
         type: 'bank_statement',
         status: 'verified',
+        url:sampleDoc,
         uploadedAt: '2024-12-20T10:35:00Z',
         fileSize: '2.4 MB',
         applicantId: '1',
       },
       {
         id: 'd2',
-        name: 'Bank Statement - Nov 2024',
+        name: 'Bank Statement - Nov 2024.pdf',
         type: 'bank_statement',
         status: 'verified',
+        url:sampleDoc,
         uploadedAt: '2024-12-20T10:36:00Z',
         fileSize: '2.1 MB',
         applicantId: '1',
       },
       {
         id: 'd3',
-        name: 'Income Tax Return 2023',
+        name: 'Income Tax Return 2023.pdf',
         type: 'tax_document',
+        url:sampleDoc,
         status: 'verified',
         uploadedAt: '2024-12-21T09:00:00Z',
         fileSize: '1.8 MB',
@@ -44,8 +50,8 @@ export const mockApplicants = [
   },
   {
     id: '2',
-    name: 'Michael Chen',
-    email: 'michael.chen@email.com',
+    name: 'Ragul Rathna',
+    email: 'ragulrathna@email.com',
     phone: '+1 (555) 234-5678',
     status: 'processing',
     processingStatus: 'qc_pending',
@@ -78,8 +84,8 @@ export const mockApplicants = [
   },
   {
     id: '3',
-    name: 'Emily Rodriguez',
-    email: 'emily.rodriguez@email.com',
+    name: 'Tharun Kumar E',
+    email: 'tharunkumar.elango@email.com',
     phone: '+1 (555) 345-6789',
     status: 'pending',
     processingStatus: 'queued',

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Sidebar from "./Sidebar";
 
 const MainLayout = () => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
 
   const collapseSidebar = () => setSidebarCollapsed(true);
 
