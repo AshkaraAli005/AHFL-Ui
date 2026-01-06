@@ -144,7 +144,7 @@ const Dashboard = () => {
                     setDateRange(Number(value))
                   }
                 >
-                  <SelectTrigger className="h-8 text-sm w-fitd">
+                  <SelectTrigger className="h-8 text-sm w-fit">
                     <Calendar className="h-3.5 w-3.5 mr-1.5" />
                     <SelectValue />
                   </SelectTrigger>
