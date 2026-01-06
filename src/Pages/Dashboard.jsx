@@ -8,6 +8,7 @@ import {
   Download,
   Layers,
   CheckCircle,
+  Calendar
 } from "lucide-react";
 
 import Header from "../components/layout/Header";
@@ -27,12 +28,38 @@ import {
 } from "../components/ui/card";
 import DailyTrendsChart from "../components/dashboard/DailyTrendsChart";
 import ProcessingStatusChart from "../components/dashboard/ProcessingStatusChart";
+import ReceptionFlowCard from "../components/dashboard/ReceptionFlowCard";
+import FilesReturnedCard from "../components/dashboard/FilesReturnedCard";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/select';
+
+import { useState } from 'react';
+// import { motion } from 'framer-motion';
+// import { Users, FileText, Download, Calendar } from 'lucide-react';
+// import Header from '@/components/layout/Header';
+// import ReceptionFlowCard from '@/components/dashboard/ReceptionFlowCard';
+// import FileProcessingStatusCard from '@/components/dashboard/FileProcessingStatusCard';
+// import FilesReturnedCard from '@/components/dashboard/FilesReturnedCard';
+// import ProcessingStatusChart from '@/components/dashboard/ProcessingStatusChart';
+// import DailyTrendsChart from '@/components/dashboard/DailyTrendsChart';
+// import RecentActivityList from '@/components/dashboard/RecentActivityList';
+
 
 
 const Dashboard = () => {
-  const { data: statsResponse, isLoading: statsLoading } = useDashboardStats();
-  const { data: activityResponse, isLoading: activityLoading } = useRecentActivity();
-  const { data: dailyStatsResponse, isLoading: dailyStatsLoading } = useDailyStats();
+  const [dateRange, setDateRange] = useState(7);
+
+  const { data: statsResponse, isLoading: statsLoading } =
+    useDashboardStats();
+  const { data: activityResponse, isLoading: activityLoading } =
+    useRecentActivity();
+  const { data: dailyStatsResponse, isLoading: dailyStatsLoading } =
+    useDailyStats(dateRange);
 
   const stats = statsResponse?.data;
   const activities = activityResponse?.data || [];
@@ -46,100 +73,54 @@ const Dashboard = () => {
       />
 
       <div className="p-6 space-y-6">
-        {/* AHFL Reception Stats */}
+        {/* Row 1: Applicants, Files, Files Returned */}
         <div>
           <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
             <Download className="h-5 w-5 text-primary" />
-            AHFL Reception
+            AHFL AWS Reception → DocuGenie Pipeline
           </h2>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            <StatCard
-              title="Total Applicants Received"
-              value={stats?.totalApplicantsReceived || 0}
-              change="From AHFL AWS"
-              changeType="neutral"
-              icon={Users}
+          <div className="grid gap-6 lg:grid-cols-3">
+            <ReceptionFlowCard
+              title="Applicants"
+              icon={<Users className="h-5 w-5 text-primary" />}
+              received={stats?.totalApplicantsReceived || 0}
+              pickedUp={stats?.totalApplicantsPickedUp || 0}
+              receivedLabel="Total Received from AHFL"
+              pickedUpLabel="Picked Up by DocuGenie"
               delay={0}
             />
-            <StatCard
-              title="Total Files Received"
-              value={stats?.totalFilesReceived || 0}
-              change="Documents in pipeline"
-              changeType="neutral"
-              icon={FileText}
+
+            <ReceptionFlowCard
+              title="Files"
+              icon={<FileText className="h-5 w-5 text-accent" />}
+              received={stats?.totalFilesReceived || 0}
+              pickedUp={stats?.totalFilesPickedUp || 0}
+              receivedLabel="Total Files Received"
+              pickedUpLabel="Files Picked Up"
               delay={0.1}
             />
-            <StatCard
-              title="Applicants Picked Up"
-              value={stats?.totalApplicantsPickedUp || 0}
-              change="By DocuGenie"
-              changeType="positive"
-              icon={Download}
-              iconColor="text-status-approved"
+
+            <FilesReturnedCard
+              totalFilesPickedUp={stats?.totalFilesPickedUp || 0}
+              qcDone={stats?.totalFilesPickedUp || 0}
+              totalFilesReturned={stats?.totalFilesReturned || 0}
               delay={0.2}
             />
-            <StatCard
-              title="Files Picked Up"
-              value={stats?.totalFilesPickedUp || 0}
-              change="For processing"
-              changeType="positive"
-              icon={FileText}
-              iconColor="text-status-approved"
-              delay={0.3}
-            />
           </div>
         </div>
 
-        {/* Processing Status Stats */}
-        <div>
-          <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-            <Layers className="h-5 w-5 text-accent" />
-            Processing Status
-          </h2>
-
-          <div className="grid gap-6 sm:grid-cols-3">
-            <StatCard
-              title="QC Done"
-              value={stats?.qcDone || 0}
-              change="Processing completed"
-              changeType="positive"
-              icon={CheckCircle}
-              iconColor="text-status-approved"
-              delay={0.4}
-            />
-            <StatCard
-              title="QC Pending"
-              value={stats?.qcPending || 0}
-              change="Awaiting quality check"
-              changeType="neutral"
-              icon={Clock}
-              iconColor="text-status-pending"
-              delay={0.5}
-            />
-            <StatCard
-              title="Queued"
-              value={stats?.queued || 0}
-              change="In pipeline"
-              changeType="neutral"
-              icon={Layers}
-              iconColor="text-status-processing"
-              delay={0.6}
-            />
-          </div>
-        </div>
-
-        {/* Charts */}
+        {/* Row 2: Charts */}
         <div className="grid gap-6 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.7 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
           >
             <Card className="h-full">
-              <CardHeader className="pb-0">
+              <CardHeader>
                 <CardTitle className="text-lg">
-                  Processing Status Distribution
+                  File Processing Distribution
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -151,18 +132,35 @@ const Dashboard = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.8 }}
+            transition={{ duration: 0.4, delay: 0.4 }}
           >
             <Card className="h-full">
-              <CardHeader>
-                <CardTitle className="text-lg">
-                  Daily Trends (Last 7 Days)
-                </CardTitle>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-lg">Daily Trends</CardTitle>
+
+                <Select
+                  value={dateRange.toString()}
+                  onValueChange={(value) =>
+                    setDateRange(Number(value))
+                  }
+                >
+                  <SelectTrigger className="h-8 text-sm w-fitd">
+                    <Calendar className="h-3.5 w-3.5 mr-1.5" />
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-popover z-50">
+                    <SelectItem value="7">Last 7 Days</SelectItem>
+                    <SelectItem value="14">Last 14 Days</SelectItem>
+                    <SelectItem value="30">Last 30 Days</SelectItem>
+                  </SelectContent>
+                </Select>
               </CardHeader>
+
               <CardContent>
                 <DailyTrendsChart
                   data={dailyStats}
                   isLoading={dailyStatsLoading}
+                  dateRange={dateRange}
                 />
               </CardContent>
             </Card>
@@ -175,11 +173,13 @@ const Dashboard = () => {
             className="lg:col-span-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.9 }}
+            transition={{ duration: 0.4, delay: 0.6 }}
           >
             <Card className="h-full">
               <CardHeader>
-                <CardTitle className="text-lg">Recent Activity</CardTitle>
+                <CardTitle className="text-lg">
+                  Recent Activity
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <RecentActivityList
@@ -193,25 +193,29 @@ const Dashboard = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 1.0 }}
+            transition={{ duration: 0.4, delay: 0.7 }}
           >
             <Card className="h-full">
               <CardHeader>
-                <CardTitle className="text-lg">Processing Overview</CardTitle>
+                <CardTitle className="text-lg">
+                  Processing Overview
+                </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="rounded-lg bg-status-approved-bg p-4">
                   <p className="text-2xl font-bold text-status-approved">
                     {stats
                       ? Math.round(
-                          (stats.totalApplicantsPickedUp /
-                            stats.totalApplicantsReceived) *
+                          (stats.totalFilesPickedUp /
+                            stats.totalFilesReceived) *
                             100
                         )
                       : 0}
                     %
                   </p>
-                  <p className="text-sm text-muted-foreground">Pickup Rate</p>
+                  <p className="text-sm text-muted-foreground">
+                    File Pickup Rate
+                  </p>
                 </div>
 
                 <div className="rounded-lg bg-status-processing-bg p-4">
@@ -219,7 +223,7 @@ const Dashboard = () => {
                     {stats
                       ? Math.round(
                           (stats.qcDone /
-                            stats.totalApplicantsPickedUp) *
+                            stats.totalFilesPickedUp) *
                             100
                         )
                       : 0}
@@ -230,12 +234,19 @@ const Dashboard = () => {
                   </p>
                 </div>
 
-                <div className="rounded-lg bg-status-pending-bg p-4">
-                  <p className="text-2xl font-bold text-status-pending">
-                    {(stats?.qcPending || 0) + (stats?.queued || 0)}
+                <div className="rounded-lg bg-accent/10 p-4">
+                  <p className="text-2xl font-bold text-accent">
+                    {stats
+                      ? Math.round(
+                          (stats.totalFilesReturned /
+                            stats.qcDone) *
+                            100
+                        )
+                      : 0}
+                    %
                   </p>
                   <p className="text-sm text-muted-foreground">
-                    Pending Processing
+                    Return Rate (of QC Done)
                   </p>
                 </div>
               </CardContent>
@@ -248,4 +259,6 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
 

@@ -287,17 +287,53 @@ export const mockDashboardStats = {
   qcDone: 892,
   qcPending: 156,
   queued: 141,
+    // Files Returned to AHFL
+    totalFilesReturned:  4129,
 };
 
-export const mockDailyStats = [
-  { date: '2024-12-23', applicantsReceived: 45, filesReceived: 178, applicantsPickedUp: 42, filesPickedUp: 165 },
-  { date: '2024-12-24', applicantsReceived: 38, filesReceived: 142, applicantsPickedUp: 40, filesPickedUp: 155 },
-  { date: '2024-12-25', applicantsReceived: 12, filesReceived: 48, applicantsPickedUp: 15, filesPickedUp: 58 },
-  { date: '2024-12-26', applicantsReceived: 52, filesReceived: 198, applicantsPickedUp: 48, filesPickedUp: 182 },
-  { date: '2024-12-27', applicantsReceived: 67, filesReceived: 256, applicantsPickedUp: 62, filesPickedUp: 238 },
-  { date: '2024-12-28', applicantsReceived: 73, filesReceived: 289, applicantsPickedUp: 68, filesPickedUp: 264 },
-  { date: '2024-12-29', applicantsReceived: 58, filesReceived: 224, applicantsPickedUp: 55, filesPickedUp: 212 },
-];
+// Generate mock daily stats for the last 30 days
+const generateMockDailyStats = () => {
+  const stats = [];
+  const today = new Date();
+
+  for (let i = 29; i >= 0; i--) {
+    const date = new Date(today);
+    date.setDate(date.getDate() - i);
+
+    const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+    const baseMultiplier = isWeekend ? 0.3 : 1;
+
+    const applicantsReceived = Math.floor(
+      (40 + Math.random() * 40) * baseMultiplier
+    );
+    const filesReceived = Math.floor(
+      (150 + Math.random() * 150) * baseMultiplier
+    );
+    const applicantsPickedUp = Math.floor(
+      applicantsReceived * (0.85 + Math.random() * 0.1)
+    );
+    const filesPickedUp = Math.floor(
+      filesReceived * (0.85 + Math.random() * 0.1)
+    );
+    const filesReturned = Math.floor(
+      filesPickedUp * (0.6 + Math.random() * 0.3)
+    );
+
+    stats.push({
+      date: date.toISOString().split('T')[0],
+      applicantsReceived,
+      filesReceived,
+      applicantsPickedUp,
+      filesPickedUp,
+      filesReturned,
+    });
+  }
+
+  return stats;
+};
+
+export const mockDailyStats = generateMockDailyStats();
+
 
 export const mockRecentActivity = [
   {

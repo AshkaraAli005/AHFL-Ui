@@ -6,6 +6,7 @@ import {
 import { apiService } from "../services/api";
 import { toast } from "./use-toast";
 
+
 export const useApplicants = (params) => {
   return useQuery({
     queryKey: ['applicants', params],
@@ -68,11 +69,10 @@ export const useRecentActivity = () => {
   });
 };
 
-export const useDailyStats = () => {
+export const useDailyStats = (days = 7) => {
   return useQuery({
-    queryKey: ['dashboard', 'dailyStats'],
-    queryFn: () => apiService.getDailyStats(),
+    queryKey: ['dashboard', 'dailyStats', days],
+    queryFn: () => apiService.getDailyStats(days),
     staleTime: 60000,
   });
 };
-

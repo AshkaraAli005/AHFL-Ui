@@ -62,13 +62,16 @@ export const apiService = {
       data: mockRecentActivity,
     };
   },
-    async getDailyStats() {
+  async getDailyStats(days = 7) {
     await simulateDelay(400);
+      const filteredData = mockDailyStats.slice(-days);
+  
     return {
       success: true,
-      data: mockDailyStats,
+      data: filteredData,
     };
   },
+  
 
   // Applicants
   async getApplicants(params = {}) {
